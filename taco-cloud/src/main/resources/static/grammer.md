@@ -6,3 +6,13 @@ https://woowacourse.github.io/javable/2020-05-18/ArrayList-vs-Arrays.asList
 
 model.addAttribute
 - spring에서 model 객체 통해 데이터를 뷰에 전달
+
+
+@Data, @RequiredArgsConstructor
+https://hyoj.github.io/blog/java/basic/lombok/#equalsandhashcode
+
+생성자의 개념 
+객체 변수에 값을 무조건 설정해야만 객체가 생성될 수 있도록 강제할 수 있는 방법
+
+@Autowired
+스프링이 해당 빈을 ~에 주입(연결)한다. 
