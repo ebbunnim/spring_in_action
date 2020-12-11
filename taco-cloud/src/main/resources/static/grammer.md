@@ -28,6 +28,14 @@ implements : 자식클래스가 부모 클래스 메서드를 반드시 오버�
 
 https://velog.io/@hkoo9329/%EC%9E%90%EB%B0%94-extends-implements-%EC%B0%A8%EC%9D%B4
 
+#Serializable
+https://woowabros.github.io/experience/2017/10/17/java-serialize2.html
+
+
+#@Bean vs @Component, @Configuration vs @Service,@Controller.. etc
+
+
+
 
 #<jpa>
 ##@Id + @GeneratedValue(strategy=GenerationType.AUTO)

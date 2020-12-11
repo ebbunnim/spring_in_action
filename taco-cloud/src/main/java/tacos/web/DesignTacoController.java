@@ -1,5 +1,6 @@
 package tacos.web;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,8 +22,10 @@ import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.Order;
 import tacos.Taco;
+import tacos.User;
 import tacos.data.IngredientRepository;
 import tacos.data.TacoRepository;
+import tacos.data.UserRepository;
 
 @Slf4j
 @Controller
@@ -34,10 +37,13 @@ public class DesignTacoController {
 	
 	private TacoRepository tacoRepo;
 	
+	private UserRepository userRepo;
+	
 	@Autowired
-	public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository tacoRepo) {
+	public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository tacoRepo, UserRepository userRepo) {
 		this.ingredientRepo = ingredientRepo;
 		this.tacoRepo=tacoRepo;
+		this.userRepo = userRepo;
 	}
 	
 	@ModelAttribute(name="order")
@@ -51,7 +57,7 @@ public class DesignTacoController {
 	}
 	
 	@GetMapping
-	public String showDesignForm(Model model) {
+	public String showDesignForm(Model model, Principal principal) {
 		// 식자재 데이터를 데이터베이스에서 가져옴 
 		List<Ingredient> ingredients = new ArrayList<>();
 		ingredientRepo.findAll().forEach(i->ingredients.add(i));
@@ -61,7 +67,12 @@ public class DesignTacoController {
 			model.addAttribute(type.toString().toLowerCase(),
 					filterByType(ingredients, type));
 		}
-		model.addAttribute("taco", new Taco());
+		
+		// 현재 로그인한 유저 정보 보여주기 
+		String username = principal.getName();
+		System.out.println(username);
+		User user = userRepo.findByUsername(username);
+		model.addAttribute("user",user);
 
 		return "design";
 	}
