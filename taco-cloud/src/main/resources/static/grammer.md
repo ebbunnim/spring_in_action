@@ -20,8 +20,7 @@ final변수의 경우 반드시 초기화되어야 하므로 RequiredArgsConstru
 스프링이 해당 빈을 ~에 주입(연결)한다. 
 
 #private protected default public
-https://luyin.tistory.com/232
-
+https://luyin.tistory.com/23\\
 #extends, implements
 extends : 부모 객체 메서드 등 그대로 사용 가능 (말그대로 상속)
 implements : 자식클래스가 부모 클래스 메서드를 반드시 오버라이딩(재정의) 해야 함
@@ -32,8 +31,9 @@ https://velog.io/@hkoo9329/%EC%9E%90%EB%B0%94-extends-implements-%EC%B0%A8%EC%9D
 https://woowabros.github.io/experience/2017/10/17/java-serialize2.html
 
 
-#@Bean vs @Component, @Configuration vs @Service,@Controller.. etc
-
+#@Bean&@Configuration vs @Component&@Service,@Controller.. etc
+https://taes-k.github.io/2019/11/22/spring-component-configuration/
+https://mangkyu.tistory.com/75
 
 
 

@@ -2,6 +2,10 @@ package tacos.web;
 
 import javax.validation.Valid;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +28,13 @@ import tacos.data.OrderRepository;
 @SessionAttributes("order")
 public class OrderController {
 	
+	private OrderProps props; // 페이징 처리하는 구성속성 홀더 클래스 만들어 주입함 
+	
 	private OrderRepository orderRepo;
 	
-	public OrderController(OrderRepository orderRepo) {
+	public OrderController(OrderRepository orderRepo, OrderProps props) {
 		this.orderRepo = orderRepo;
+		this.props = props;
 	}
 	
 	@GetMapping("/current")
@@ -51,6 +58,17 @@ public class OrderController {
 		}	
 		
 		return "orderForm";
+	}
+	
+	@GetMapping 
+	public String orderForUser(@AuthenticationPrincipal User user, Model model) {
+		
+		
+		Pageable pageable = PageRequest.of(0,props.getPageSize());
+		model.addAttribute("orders",orderRepo.findByUserOrderByPlacedAtDesc(user,pageable)); // clause 만듬 
+		
+		return "orderList";
+		
 	}
 	
 	@PostMapping
